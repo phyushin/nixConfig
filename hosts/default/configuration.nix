@@ -5,8 +5,7 @@
 { pkgs-unstable }:
 
 { config, pkgs, inputs,  ... }:
-#let unstable-pkgs = import nixos-unstable { config = { allowUnfree = true; }; };
-#in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -99,10 +98,6 @@ services ={
       # no need to redefine it in your config for now)
       #media-session.enable = true;
     };
-    xserver.xkb = {
-      layout = "us";
-      variant = "";
-    };
 
     # Enable CUPS to print documents.
     printing.enable = true;
@@ -117,15 +112,18 @@ services ={
   #  displayManager.sddm.enable = true;
   #  desktopManager.plasma6.enable = true;
 
-    xserver.displayManager.lightdm.enable = true;
-    xserver.desktopManager.cinnamon.enable = true;
+    xserver = {
+      # Enable touchpad support (enabled default in most desktopManager).
+      displayManager.lightdm.enable = true;
+      desktopManager.cinnamon.enable = true;
+      # libinput.enable = true;
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
 
-    # Enable touchpad support (enabled default in most desktopManager).
-    # xserver.libinput.enable = true;
+    }
 
-    #programs.hyprland.enable = true;
-
-    # Configure keymap in X11
     qemuGuest.enable = true;
     spice-vdagentd.enable = true;
 };
@@ -139,109 +137,17 @@ services ={
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-    apktool
-    apksigner
-    android-tools
-    altair
-    awscli
-    bloodhound
-    bluez 
-    bluez-tools 
-    chromedriver 
-    chromium
-    chrony
-    dalfox
-    dbeaver-bin
-    dig
-    dirb
-    dirbuster
-    docker
-    enum4linux-ng
-    ffuf
-    #frida-tools
-    flameshot
-    gcc
-    git
-    go
-    gowitness
-    gdb
-    hyprland
-    jadx    
-    jdk11
-    jq
-    imhex
-    kitty
-    libgcc
-    libimobiledevice
-    libxslt
-    libreoffice-qt6-fresh    
-    neo4j
-    neovim
-    nikto
-    nmap
-    nodejs
-    obsidian
-    open-vm-tools
-    openvpn
-    openssl
-    opentofu
-    postman
-    ruby
-    rgbds
-    samdump2
-    sameboy
-    scrcpy
-    spice-vdagent
-    terraform
-    tmux
-    toybox
-    veracrypt
-    vscode
-    vscode-extensions.ms-dotnettools.csdevkit
-    vscode-extensions.ms-dotnettools.vscode-dotnet-runtime
-    wget
-    wifite2
-    winetricks
-    wineWowPackages.stable
-    uv
-    zsh
-
-#python
-    python313
-    python313Packages.pipx
-    python313Packages.pandas    
-    python313Packages.pip
-    python313Packages.numpy
-    python313Packages.requests
-    python313Packages.wcwidth
-#    python3Packages = pkgs.python312Packages;
-
-#unstable
-    pkgs-unstable.bruno
-    # (unstable-pkgs.burpsuite.override { proEdition = true; })    
-    # unstable-pkgs.android-studio
-    # unstable-pkgs.nuclei
-    # unstable-pkgs.platformio
-    # unstable-pkgs.postman
-    # unstable-pkgs.netexec
   ];
-#  programs.hyprland = {
-#   enable = true;
-# set the flake package
-#  package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-  # make sure to also set the portal package, so that they are in sync
-# portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-#};
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-
-  #   enable = true;
-  #   enableSSHSupport = true;
+  # programs = {
+  #   mtr.enable = true;
+  #   gnupg.agent = {
+  #     enable = true;
+  #     enableSSHSupport = true;
+  #    };
   # };
 
   # List services that you want to enable:
@@ -252,15 +158,9 @@ home-manager = {
 		"phyu" = import ./home.nix;
 	};
 };
-  # Open ports in the firewall.
-  networking= {
-    
-  };
 
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+
+ 
   # Enable VMware Tools
 
   virtualisation = {
