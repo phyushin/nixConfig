@@ -1,9 +1,9 @@
 {lib,config,pkgs, ...}:
-#let unstable-pkgs = import <nixos-unstable> { config = { allowUnfree = true; }; };
 
+{
 environment.systemPackages = with pkgs; [
+  nixfmt-rfc-style
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
     apktool
     apksigner
     android-tools
@@ -24,7 +24,6 @@ environment.systemPackages = with pkgs; [
     docker
     enum4linux-ng
     ffuf
-    #frida-tools
     flameshot
     gcc
     git
@@ -73,21 +72,12 @@ environment.systemPackages = with pkgs; [
     zsh
 
 #python
-    python313
+    
     python313Packages.pipx
     python313Packages.pandas    
     python313Packages.pip
     python313Packages.numpy
     python313Packages.requests
     python313Packages.wcwidth
-#    python3Packages = pkgs.python312Packages;
 
-# #unstable
-#     unstable-pkgs.bruno
-#     (unstable-pkgs.burpsuite.override { proEdition = true; })    
-#     unstable-pkgs.android-studio
-#     unstable-pkgs.nuclei
-#     unstable-pkgs.platformio
-#     unstable-pkgs.postman
-#     unstable-pkgs.netexec
-  ];
+  ];}

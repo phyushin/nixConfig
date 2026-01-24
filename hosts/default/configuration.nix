@@ -2,6 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
+{ pkgs-unstable }:
+
 { config, pkgs, inputs,  ... }:
 #let unstable-pkgs = import nixos-unstable { config = { allowUnfree = true; }; };
 #in
@@ -133,16 +135,6 @@ services ={
     firefox.enable = true;
     zsh.enable = true;
   };
-
-  # Allow unfree packages
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-  #		packageOverrides = pkgs: {
-  #			unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {};
-  #		};
-    };
-  };
  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -227,7 +219,7 @@ environment.systemPackages = with pkgs; [
 #    python3Packages = pkgs.python312Packages;
 
 #unstable
-    # unstable-pkgs.bruno
+    pkgs-unstable.bruno
     # (unstable-pkgs.burpsuite.override { proEdition = true; })    
     # unstable-pkgs.android-studio
     # unstable-pkgs.nuclei
