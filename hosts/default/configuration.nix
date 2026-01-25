@@ -4,50 +4,67 @@
 
 { pkgs-unstable }:
 
-{ config, pkgs, inputs,  ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      # inputs.home-manager.nixosModules.default
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    # inputs.home-manager.nixosModules.default
+  ];
 
-  tester ={
+  tester = {
     enable = true;
     userName = "phyu";
   };
 
   # Bootloader.
-  boot ={
-    loader ={ 
+  boot = {
+    loader = {
       grub.enable = true;
       grub.device = "/dev/sda";
       grub.useOSProber = true;
     };
     blacklistedKernelModules = [ "rtl8xxxu" ];
     extraModulePackages = with config.boot.kernelPackages; [
-        rtl88xxau-aircrack
+      rtl88xxau-aircrack
     ];
   };
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   networking = {
     hostName = "voidsent"; # Define your hostname.
-  # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # proxy.default = "http://user:password@proxy:port/";
-  # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    # Configure network proxy if necessary
+    # proxy.default = "http://user:password@proxy:port/";
+    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking networkmanager.enable = true;
+    # Enable networking networkmanager.enable = true;
     firewall = {
-        enable = true;
-        allowedTCPPorts = [22 80 443 8000 8080 8083 27042 3128 5930 ]; # specified open ports http, https, burp listener and frida
-      }; 
-      extraHosts =
-    ''
+      enable = true;
+      allowedTCPPorts = [
+        22
+        80
+        443
+        8000
+        8080
+        8083
+        27042
+        3128
+        5930
+      ]; # specified open ports http, https, burp listener and frida
+    };
+    extraHosts = ''
       127.0.0.2 other-localhost
     '';
   };
@@ -58,34 +75,32 @@
   i18n = {
     defaultLocale = "en_GB.UTF-8";
     extraLocaleSettings = {
-    LC_ADDRESS = "en_GB.UTF-8";
-    LC_IDENTIFICATION = "en_GB.UTF-8";
-    LC_MEASUREMENT = "en_GB.UTF-8";
-    LC_MONETARY = "en_GB.UTF-8";
-    LC_NAME = "en_GB.UTF-8";
-    LC_NUMERIC = "en_GB.UTF-8";
-    LC_PAPER = "en_GB.UTF-8";
-    LC_TELEPHONE = "en_GB.UTF-8";
-    LC_TIME = "en_GB.UTF-8";
+      LC_ADDRESS = "en_GB.UTF-8";
+      LC_IDENTIFICATION = "en_GB.UTF-8";
+      LC_MEASUREMENT = "en_GB.UTF-8";
+      LC_MONETARY = "en_GB.UTF-8";
+      LC_NAME = "en_GB.UTF-8";
+      LC_NUMERIC = "en_GB.UTF-8";
+      LC_PAPER = "en_GB.UTF-8";
+      LC_TELEPHONE = "en_GB.UTF-8";
+      LC_TIME = "en_GB.UTF-8";
     };
   };
 
-
   security.rtkit.enable = true;
 
-
-services ={
+  services = {
     openssh = {
-    enable = true;
+      enable = true;
       ports = [ 22 ];
-      settings ={
-          PasswordAuthentication = true;
-          AllowUsers = [ "phyu" ];
-          UseDns = true;
-          X11Forwarding = false;
-          PermitRootLogin = "prohibit-password";
+      settings = {
+        PasswordAuthentication = false;
+        AllowUsers = [ "phyu" ];
+        UseDns = true;
+        X11Forwarding = false;
+        PermitRootLogin = "prohibit-password";
       };
-  };
+    };
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -104,15 +119,17 @@ services ={
 
     # Enable sound with pipewire.
     pulseaudio.enable = false;
-      # Enable the X11 windowing system.
-    # You can disable this if you're only using the Wayland session.
-    xserver.enable = true;
-  
-  # Enable the KDE Plasma Desktop Environment.
-  #  displayManager.sddm.enable = true;
-  #  desktopManager.plasma6.enable = true;
+
+    # vscode-server.enable = true;
+
+    # Enable the KDE Plasma Desktop Environment.
+    #  displayManager.sddm.enable = true;
+    #  desktopManager.plasma6.enable = true;
 
     xserver = {
+      # Enable the X11 windowing system.
+      # You can disable this if you're only using the Wayland session.
+      enable = true;
       # Enable touchpad support (enabled default in most desktopManager).
       displayManager.lightdm.enable = true;
       desktopManager.cinnamon.enable = true;
@@ -126,19 +143,19 @@ services ={
 
     qemuGuest.enable = true;
     spice-vdagentd.enable = true;
-};
+  };
 
   # Install firefox.
-  programs ={
+  programs = {
     firefox.enable = true;
     zsh.enable = true;
+    nix-ld.enable = true;
   };
- 
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
   ];
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -152,22 +169,20 @@ environment.systemPackages = with pkgs; [
 
   # List services that you want to enable:
 
-home-manager = {
-	# specialArgs = {inherit inputs;};
-	users = {
-		"phyu" = import ./home.nix;
-	};
-};
+  home-manager = {
+    # specialArgs = {inherit inputs;};
+    users = {
+      "phyu" = import ./home.nix;
+    };
+  };
 
-
- 
   # Enable VMware Tools
 
   virtualisation = {
     vmware.guest.enable = true;
     docker.enable = true;
   };
-  
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -175,5 +190,5 @@ home-manager = {
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
- # programs.hyprland.enable = true;
+  # programs.hyprland.enable = true;
 }

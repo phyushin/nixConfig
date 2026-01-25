@@ -1,86 +1,113 @@
-{lib,config,pkgs, ...}:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
-environment.systemPackages = with pkgs; [
-  nixfmt-rfc-style
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  environment.systemPackages = with pkgs; [
+    # A
+    altair
+    android-tools
     apktool
     apksigner
-    android-tools
-    altair
+
     awscli
+    # B
     bat
     bloodhound
-    bluez 
-    bluez-tools 
-    chromedriver 
+    bluez
+    bluez-tools
+    # C
+    chromedriver
     chromium
     chrony
     cloudlens
+    # D
     dalfox
     dbeaver-bin
     dig
     dirb
     dirbuster
-    direnv 
+    direnv
     docker
+    # E
     enum4linux-ng
+    # F
     ffuf
     flameshot
+
+    # G
     gcc
+    gdb
     git
     go
     gowitness
-    gdb
+    # H
     hyprland
-    jadx    
+    # I
+    imhex
+    # J
+    jadx
     jdk11
     jq
-    imhex
+    # K
     kitty
     k9s
+    # L
     libgcc
     libimobiledevice
     libxslt
-    libreoffice-qt6-fresh    
+    libreoffice-qt6-fresh
+    # N
     neo4j
     neovim
     nikto
     nmap
     nodejs
+    # O
     obsidian
     open-vm-tools
     openvpn
     openssl
     opentofu
+    # P
     postman
+    # R
     ruby
     rgbds
+    # S
     samdump2
     sameboy
     scrcpy
     spice-vdagent
+    # T
     terraform
     tmux
     toybox
+    # V
     veracrypt
-    vscode
     vscode-extensions.ms-dotnettools.csdevkit
     vscode-extensions.ms-dotnettools.vscode-dotnet-runtime
+    # W
     wget
     wifite2
     winetricks
     wineWowPackages.stable
+    # U
     uv
+    # Z
     zsh
 
-#python
-    
+    # python
+
     python313Packages.pipx
-    python313Packages.pandas    
+    python313Packages.pandas
     python313Packages.pip
     python313Packages.numpy
     python313Packages.requests
     python313Packages.wcwidth
 
-  ];}
+  ];
+}
