@@ -24,6 +24,7 @@
     chromium
     chrony
     cloudlens
+    crane
     # D
     dalfox
     dbeaver-bin
@@ -31,6 +32,7 @@
     dirb
     dirbuster
     direnv
+    dive
     docker
     # E
     enum4linux-ng
@@ -38,6 +40,7 @@
     ffuf
     flameshot
     fastfetch
+
     # G
     gcc
     gdb
@@ -53,13 +56,18 @@
     jdk11
     jq
     # K
-    kitty
     k9s
+    kitty
+    kubectl
+    kubescape
     # L
     libgcc
     libimobiledevice
     libxslt
     libreoffice-qt6-fresh
+    # M
+    metasploit
+    magic-wormhole-rs
     # N
     neo4j
     neovim
@@ -82,10 +90,12 @@
     sameboy
     scrcpy
     spice-vdagent
+    sublist3r
     # T
     terraform
     tmux
     toybox
+    trivy
     # V
     veracrypt
     vscode-extensions.ms-dotnettools.csdevkit
@@ -108,7 +118,6 @@
     python312Packages.numpy
     python312Packages.requests
     python312Packages.wcwidth
-
 
   ];
 }
