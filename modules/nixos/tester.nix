@@ -12,7 +12,7 @@ in
     enable = lib.mkEnableOption "Enable user module";
 
     userName = lib.mkOption {
-      default = "phyu";
+      default = "johnze";
       description = ''
         username
       '';
@@ -22,7 +22,7 @@ in
   config = lib.mkIf cfg.enable {
     users.users.${cfg.userName} = {
       isNormalUser = true;
-      description = "phyu";
+      description = "johnze";
       extraGroups = [
         "networkmanager"
         "wheel"

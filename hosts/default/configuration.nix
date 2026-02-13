@@ -15,12 +15,13 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    
     # inputs.home-manager.nixosModules.default
   ];
 
   tester = {
     enable = true;
-    userName = "phyu";
+    userName = "johnze";
   };
 
   # Bootloader.
@@ -42,7 +43,7 @@
   ];
 
   networking = {
-    hostName = "voidsent"; # Define your hostname.
+    hostName = "melchior"; # Define your hostname.
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     # Configure network proxy if necessary
@@ -95,7 +96,7 @@
       ports = [ 22 ];
       settings = {
         PasswordAuthentication = false;
-        AllowUsers = [ "phyu" ];
+        AllowUsers = [ "johnze" ];
         UseDns = true;
         X11Forwarding = false;
         PermitRootLogin = "prohibit-password";
@@ -145,7 +146,6 @@
     spice-vdagentd.enable = true;
   };
 
-  # Install firefox.
   programs = {
     firefox.enable = true;
     zsh.enable = true;
@@ -169,12 +169,12 @@
 
   # List services that you want to enable:
 
-  home-manager = {
-    # specialArgs = {inherit inputs;};
-    users = {
-      "phyu" = import ./home.nix;
-    };
-  };
+  #home-manager = {
+  #  # specialArgs = {inherit inputs;};
+  #  users = {
+  #    "johnze" = import ./home.nix;
+  #  };
+  #};
 
   # Enable VMware Tools
 

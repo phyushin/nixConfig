@@ -12,7 +12,6 @@
     android-tools
     apktool
     apksigner
-
     awscli
     # B
     bat
@@ -33,6 +32,7 @@
     dirbuster
     direnv
     dive
+    dnsutils
     docker
     # E
     enum4linux-ng
@@ -40,7 +40,6 @@
     ffuf
     flameshot
     fastfetch
-
     # G
     gcc
     gdb
@@ -91,7 +90,7 @@
     sameboy
     scrcpy
     spice-vdagent
-    
+    sslscan
     # T
     terraform
     tmux
