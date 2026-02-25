@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  nessus:
+    image: tenableofficial/nessus:latest
+    container_name: nessus
+    restart: unless-stopped
+
+    ports:
+      - "8834:8834"
+
+    volumes:
+      - nessus_data:/opt/nessus
+
+    environment:
+      - ACCEPT_EULA=yes
+
+volumes:
+  nessus_data:

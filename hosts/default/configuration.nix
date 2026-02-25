@@ -15,7 +15,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    
     # inputs.home-manager.nixosModules.default
   ];
 
@@ -43,7 +42,8 @@
   ];
 
   networking = {
-    hostName = "melchior"; # Define your hostname.
+    hostName = "shinji"; # Define your hostname. Change this to what ever you want
+
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     # Configure network proxy if necessary
@@ -131,6 +131,7 @@
       # Enable the X11 windowing system.
       # You can disable this if you're only using the Wayland session.
       enable = true;
+      videoDrivers = ["vmware"];
       # Enable touchpad support (enabled default in most desktopManager).
       displayManager.lightdm.enable = true;
       desktopManager.cinnamon.enable = true;
@@ -146,11 +147,14 @@
     spice-vdagentd.enable = true;
   };
 
+  # Install firefox.
   programs = {
     firefox.enable = true;
     zsh.enable = true;
     nix-ld.enable = true;
   };
+    
+    my.nessus.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -169,13 +173,6 @@
 
   # List services that you want to enable:
 
-  #home-manager = {
-  #  # specialArgs = {inherit inputs;};
-  #  users = {
-  #    "johnze" = import ./home.nix;
-  #  };
-  #};
-
   # Enable VMware Tools
 
   virtualisation = {
@@ -190,5 +187,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
-  # programs.hyprland.enable = true;
 }
