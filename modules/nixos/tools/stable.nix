@@ -18,6 +18,7 @@
     # bloodhound
     bluez
     bluez-tools
+    btop
     # C
     chromedriver
     chromium
@@ -83,6 +84,7 @@
     openssl
     opentofu
     # P
+    parted
     postman
     # R
     ruby

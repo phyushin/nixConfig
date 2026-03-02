@@ -41,8 +41,32 @@ Once that's done, run the following to apply the configuration to the device whe
 
 ## Nessus 
 
-if the docker file doesnt pull use the following command
-'sudo docker pull tenable/nessus:latest-ubuntu'
+before starting and to continue persistance of the nesus files you will need to do the following:
+
+
+#### Create the folders
+
+```bash
+sudo mkdir -p /srv/nessus-users
+sudo chown -R root:root /srv/nessus-users
+```
+
+#### Set the nessus init vars
+```bash
+sudo install -m 600 -o root -g root /dev/null /etc/nessus-init.env && sudoedit /etc/nessus-init.env
+```
+
+#### Restart the service
+```bash
+sudo systemctl restart docker-nessus.service
+sudo systemctl start nessus-init.service
+journalctl -u nessus-init -n 200 --no-pager
+```
+
+### Other 
+
+#### chromium chrashing issues 
+`rm ~/.config/chromium/SingletonLock  `
 
 
 ```bash

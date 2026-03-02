@@ -2,7 +2,7 @@
 
 {
   # ------------------------------------------------------------
-  # Enable Docker
+  # Docker + OCI Containers base module
   # ------------------------------------------------------------
   virtualisation.docker = {
     enable = true;
@@ -12,29 +12,17 @@
   # Optional: allow your user to run docker without sudo
   users.users.johnze.extraGroups = [ "docker" ];
 
-  # ------------------------------------------------------------
-  # Nessus Container
-  # ------------------------------------------------------------
+  # OCI containers backend
   virtualisation.oci-containers = {
     backend = "docker";
-
-    containers.nessus = {
-      image = "tenable/nessus:latest-ubuntu";
-
-      # Map host port 8834 → container 8834
-      ports = [
-        "8834:8834"
-      ];
-
-      # IMPORTANT:
-      # Persist ONLY the Nessus data directory.
-      # Do NOT mount over /opt/nessus entirely.
-      volumes = [
-        "nessus_data:/opt/nessus/var/nessus"
-      ];
-
-      # Auto start via systemd
-      autoStart = false;
-    };
   };
-} 
+
+  # ------------------------------------------------------------
+  # Import docker-managed services (modular)
+  # Add more later e.g. ./bloodhound.nix
+  # ------------------------------------------------------------
+  imports = [
+    ./nessus-svc.nix
+    # ./bloodhound.nix
+  ];
+}
