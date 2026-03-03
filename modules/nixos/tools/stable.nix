@@ -8,18 +8,21 @@
 {
   environment.systemPackages = with pkgs; [
     # A
-    # android-tools -- doesnt work on aarch64
-    # apktool
-    # apksigner
-    # altair
+    android-studio
+    android-tools # doesnt work on aarch64
+    apktool
+    apksigner
+    altair
     awscli
     # B
     bat
     # bloodhound
     bluez
     bluez-tools
+    brave
     # C
     chromedriver
+    
     chromium
     chrony
     cloudlens
@@ -34,6 +37,7 @@
     dive
     dnsutils
     docker
+    discord
     # E
     enum4linux-ng
     exploitdb
@@ -49,7 +53,7 @@
     go
     gowitness
     # H
-    # hoppscotch # doesnt work on m1
+    hoppscotch # doesnt work on m1
     hyprland
     # I
     imhex
@@ -63,10 +67,12 @@
     kubectl
     kubescape
     # L
+  
     libgcc
     libimobiledevice
     libxslt
     libreoffice-qt6-fresh
+    lon
     # M
     metasploit
     magic-wormhole-rs
@@ -88,6 +94,8 @@
     ruby
     rgbds
     # S
+    sbctl
+    signal-desktop
     samdump2
     sameboy
     scrcpy
@@ -105,8 +113,9 @@
     wget
     whois
     wifite2
-    # winetricks
-    # wineWowPackages.stable
+    winetricks
+    wineWowPackages.stable
+    wpscan
     # U
     uv
     # Z

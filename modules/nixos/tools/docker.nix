@@ -10,7 +10,7 @@
   };
 
   # Optional: allow your user to run docker without sudo
-  users.users.johnze.extraGroups = [ "docker" ];
+  users.users.phyu.extraGroups = [ "docker" ];
 
   # ------------------------------------------------------------
   # Nessus Container
