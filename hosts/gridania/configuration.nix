@@ -15,8 +15,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    
-    # inputs.home-manager.nixosModules.default
   ];
 
   tester = {
@@ -31,7 +29,6 @@
     };
     
     nvidia = {
-
       # Modesetting is required.
       modesetting.enable = true;
 
@@ -67,10 +64,8 @@
   boot = {
     loader = {
       systemd-boot.enable = true;
-      #grub.enable = true;
-      #grub.device = "/dev/sda";
-      #grub.useOSProber = true;
     };
+
     blacklistedKernelModules = [ "rtl8xxxu" ];
     extraModulePackages = with config.boot.kernelPackages; [
       rtl88xxau-aircrack
@@ -107,6 +102,8 @@
     };
     extraHosts = ''
       127.0.0.2 other-localhost
+      192.168.2.21 emerald.local
+      192.168.2.5  crystarium.local
     '';
   };
   # Set your time zone.
@@ -161,8 +158,6 @@
     # Enable sound with pipewire.
     pulseaudio.enable = false;
 
-    # vscode-server.enable = true;
-
     # Enable the KDE Plasma Desktop Environment.
     #  displayManager.sddm.enable = true;
     #  desktopManager.plasma6.enable = true;
@@ -183,9 +178,6 @@
       };
 
     };
-
-    #qemuGuest.enable = true;
-    #spice-vdagentd.enable = true;
   };
 
   programs = {
@@ -211,10 +203,9 @@
 
   # List services that you want to enable:
 
-  # Enable VMware Tools
 
   virtualisation = {
-    #vmware.guest.enable = true;
+
     docker.enable = true;
   };
 

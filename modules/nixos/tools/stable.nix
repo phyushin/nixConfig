@@ -82,24 +82,31 @@
     nikto
     nmap
     nodejs
+    
     # O
     obsidian
     open-vm-tools
     openvpn
     openssl
     opentofu
+    
     # P
     postman
+    
     # R
     ruby
     rgbds
+    
     # S
-    sbctl
-    signal-desktop
     samdump2
     sameboy
+    slack
+    sbctl
     scrcpy
+    signal-desktop
     spice-vdagent
+    spice-gtk
+
     # T
     terraform
     tmux
@@ -118,6 +125,8 @@
     wpscan
     # U
     uv
+    #
+    virt-viewer
     # Z
     zsh
 
