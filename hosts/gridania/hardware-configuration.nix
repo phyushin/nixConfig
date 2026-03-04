@@ -19,7 +19,9 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/6438-62C4";
+    { 
+      #device = "/dev/disk/by-uuid/BFCA-C826";
+       device = "/dev/disk/by-uuid/6438-62C4";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
