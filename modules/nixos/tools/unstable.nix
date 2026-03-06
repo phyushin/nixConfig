@@ -16,7 +16,7 @@
     nixfmt
     nuclei
     platformio
-    postman
+    #postman
     shuffledns
     subfinder
     vscode

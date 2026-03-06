@@ -59,11 +59,19 @@
     };
 };
 
-
   # Bootloader.
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        #extraEntries = {
+        # "windows.conf" = ''
+        #    title Windows
+        #   efi /EFI/Microsoft/Boot/bootmgfw.efi
+        #   '';
+        # };
+        };
+
     };
 
     blacklistedKernelModules = [ "rtl8xxxu" ];
@@ -101,9 +109,9 @@
       ]; # specified open ports http, https, burp listener and frida
     };
     extraHosts = ''
-      127.0.0.2 other-localhost
-      192.168.2.21 emerald.local
-      192.168.2.5  crystarium.local
+      127.0.0.2     other-localhost
+      192.168.2.21  emerald.local
+      192.168.2.5   crystarium.local
     '';
   };
   # Set your time zone.

@@ -39,10 +39,12 @@
     docker
     discord
     # E
+    efibootmgr
     enum4linux-ng
     exploitdb
     # F
     ffuf
+    filezilla
     findomain
     flameshot
     fastfetch
@@ -50,6 +52,7 @@
     gcc
     gdb
     git
+    gimp-with-plugins
     go
     gowitness
     # H
@@ -57,12 +60,15 @@
     hyprland
     # I
     imhex
+    inetutils
+    inkscape
     # J
     jadx
     jdk11
     jq
     # K
     k9s
+    kicad
     kitty
     kubectl
     kubescape
@@ -81,7 +87,8 @@
     neovim
     nikto
     nmap
-    nodejs
+    nodePackages."@angular/cli"
+    nodejs_24
     
     # O
     obsidian
@@ -100,12 +107,13 @@
     # S
     samdump2
     sameboy
-    slack
     sbctl
     scrcpy
     signal-desktop
+    slack
     spice-vdagent
     spice-gtk
+    steam
 
     # T
     terraform
@@ -125,8 +133,10 @@
     wpscan
     # U
     uv
-    #
+    # V 
     virt-viewer
+    # Y 
+    yarn
     # Z
     zsh
 

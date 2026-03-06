@@ -20,10 +20,17 @@
   };
 
   outputs =
-    { self, nixpkgs, nixpkgs-unstable, headplane, lanzaboote, ... }@inputs:
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      headplane,
+      lanzaboote,
+      ...
+    }@inputs:
     let
       # system = "aarch64-linux";
-       system = "x86_64-linux";
+      system = "x86_64-linux";
       # system = "aarch64-darwin" ## APPLE SILICON
       # system = "x86_64-darwin"  ## APPLE INTEL
       pkgs = import nixpkgs {
@@ -47,26 +54,9 @@
 
           modules = [
             lanzaboote.nixosModules.lanzaboote
-            ({ pkgs, lib, ... }: {
 
-            environment.systemPackages = [
-              # For debugging and troubleshooting Secure Boot.
-              pkgs.sbctl
-            ];
-
-            # Lanzaboote currently replaces the systemd-boot module.
-            # This setting is usually set to true in configuration.nix
-            # generated at installation time. So we force it to false
-            # for now.
-            boot.loader.systemd-boot.enable = lib.mkForce false;
-
-            boot.lanzaboote = {
-              enable = true;
-              pkiBundle = "/var/lib/sbctl";
-            };
-          })
-          
             ((import ./hosts/gridania/configuration.nix) { inherit pkgs-unstable; })
+            ((import ./hosts/gridania/lanza.nix))
             ((import ./modules) { inherit pkgs-unstable; })
 
           ];
