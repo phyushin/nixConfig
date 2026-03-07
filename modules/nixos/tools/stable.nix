@@ -116,6 +116,7 @@
     steam
 
     # T
+    tailscale
     terraform
     tmux
     toybox
