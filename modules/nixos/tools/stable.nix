@@ -122,6 +122,7 @@
     trivy
     # V
     veracrypt
+    vivaldi
     vscode-extensions.ms-dotnettools.csdevkit
     vscode-extensions.ms-dotnettools.vscode-dotnet-runtime
     # W
@@ -135,6 +136,7 @@
     uv
     # V 
     virt-viewer
+    vivaldi
     # Y 
     yarn
     # Z

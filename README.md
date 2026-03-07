@@ -51,3 +51,22 @@ sudo nixos-rebuild switch --flake .#$hostname
 
 This will take the configuration from the current folder and apply it to the machine (if it's the first time running it, it will take a little time)
 
+## Secure Boot Stuff
+
+disable secure boot first
+
+install nix #base
+
+install sbctl by adding to your configuration.nix
+
+
+sudo sbctl create-keys # create new keys 
+sudo sbctl enroll-keys --microsoft # sign them with microsoft 
+
+sudo sbctl verify # check things are signed
+
+sudo bootctl install # install to the boot stuff
+
+install the flake 
+sudo nixos-rebuild boot --flake .#gridania 
+sudo nixos-rebuild switch --flake .#hostname
