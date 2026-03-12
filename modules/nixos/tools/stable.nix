@@ -98,7 +98,9 @@
     opentofu
     
     # P
-    postman
+    platformio
+    platformio-core
+    vscode-extensions.platformio.platformio-vscode-ide
     
     # R
     ruby

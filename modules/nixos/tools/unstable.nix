@@ -16,9 +16,7 @@
     nixfmt
     nuclei
     tailscale
-    platformio
-    platformio-core
-    platformio-vscode-ide
+  
     #postman
     shuffledns
     subfinder
