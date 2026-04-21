@@ -204,6 +204,11 @@
     firefox.enable = true;
     zsh.enable = true;
     nix-ld.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      pinentryFlavor = "gnome3"; # or "curses" for terminal-only
+};
   };
     
   # List packages installed in system profile. To search, run:
