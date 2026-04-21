@@ -23,6 +23,7 @@
     # C
     chromedriver
     
+    
     chromium
     chrony
     cloudlens
@@ -38,6 +39,7 @@
     dnsutils
     docker
     discord
+    
     # E
     efibootmgr
     enum4linux-ng

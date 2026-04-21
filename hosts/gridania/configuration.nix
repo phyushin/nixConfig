@@ -133,7 +133,19 @@
     };
   };
 
-  security.rtkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    sudo = {
+      enable = true;
+      extraRules = [{
+        users=["phyu"];
+        runAs ="ALL:ALL";
+        commands=[
+          {command = "/opt/reboot-into-windows";options = ["NOPASSWD"];}
+          ];
+        }];
+      };
+    };
 
   services = {
     openssh = {
@@ -211,9 +223,8 @@
 
   # List services that you want to enable:
 
-
   virtualisation = {
-
+    vmware.host.enable = true;
     docker.enable = true;
   };
 
