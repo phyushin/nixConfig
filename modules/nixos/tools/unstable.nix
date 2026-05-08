@@ -10,14 +10,14 @@
     #android-studio  -- doesnt work with aarch64-linux
     bruno
     (burpsuite.override { proEdition = false; })
+    # (burpsuite.override { proEdition = true; })
     jsubfinder
     massdns
-    netexec
     nixfmt
     nuclei
     tailscale
   
-    #postman
+  
     shuffledns
     subfinder
     vscode

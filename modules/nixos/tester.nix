@@ -28,6 +28,7 @@ in
         "wheel"
         "docker"
         "adbusers"
+        "dialout"
       ];
       packages = with pkgs; [
         kdePackages.kate

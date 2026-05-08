@@ -87,6 +87,7 @@
     # N
     neo4j
     neovim
+    netexec
     nikto
     nmap
     nodePackages."@angular/cli"
@@ -100,13 +101,16 @@
     opentofu
     
     # P
+    proxychains-ng
     platformio
     platformio-core
     vscode-extensions.platformio.platformio-vscode-ide
+    pinentry-curses
     
     # R
     ruby
     rgbds
+    realvnc-vnc-viewer
     
     # S
     samdump2

@@ -189,7 +189,10 @@
       # videoDrivers = ["vmware"]; # is not compatible with m1
       videoDrivers = ["nvidia"]; 
       # Enable touchpad support (enabled default in most desktopManager).
-      displayManager.lightdm.enable = true;
+      displayManager.lightdm = {
+        enable = true;
+        background = "/home/phyu/Downloads/ff14_backgrounds/blm.png";
+        };
       desktopManager.cinnamon.enable = true;
       # libinput.enable = true;
       xkb = {
@@ -207,8 +210,7 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryFlavor = "gnome3"; # or "curses" for terminal-only
-};
+      };
   };
     
   # List packages installed in system profile. To search, run:
