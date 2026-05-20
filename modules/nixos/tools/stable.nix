@@ -98,6 +98,7 @@
     open-vm-tools
     openvpn
     openssl
+    
     opentofu
     
     # P
@@ -109,6 +110,7 @@
     
     # R
     ruby
+    rbenv
     rgbds
     realvnc-vnc-viewer
     
