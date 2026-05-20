@@ -8,18 +8,22 @@
 {
   environment.systemPackages = with pkgs; [
     # A
-    # android-tools -- doesnt work on aarch64
-    # apktool
-    # apksigner
-    # altair
+    android-studio
+    android-tools # doesnt work on aarch64
+    apktool
+    apksigner
+    altair
     awscli
     # B
     bat
     # bloodhound
     bluez
     bluez-tools
+    brave
     # C
     chromedriver
+    
+    
     chromium
     chrony
     cloudlens
@@ -34,11 +38,15 @@
     dive
     dnsutils
     docker
+    discord
+    
     # E
+    efibootmgr
     enum4linux-ng
     exploitdb
     # F
     ffuf
+    filezilla
     findomain
     flameshot
     fastfetch
@@ -46,69 +54,102 @@
     gcc
     gdb
     git
+    gimp-with-plugins
     go
     gowitness
     # H
-    # hoppscotch # doesnt work on m1
+    hoppscotch # doesnt work on m1
     hyprland
     # I
     imhex
+    inetutils
+    inkscape
     # J
     jadx
     jdk11
     jq
     # K
     k9s
+    kicad
     kitty
     kubectl
     kubescape
     # L
+  
     libgcc
     libimobiledevice
     libxslt
     libreoffice-qt6-fresh
+    lon
     # M
     metasploit
     magic-wormhole-rs
     # N
     neo4j
     neovim
+    netexec
     nikto
     nmap
-    nodejs
+    nodePackages."@angular/cli"
+    nodejs_24
+    
     # O
     obsidian
     open-vm-tools
     openvpn
     openssl
+    
     opentofu
+    
     # P
-    postman
+    proxychains-ng
+    platformio
+    platformio-core
+    vscode-extensions.platformio.platformio-vscode-ide
+    pinentry-curses
+    
     # R
     ruby
+    rbenv
     rgbds
+    realvnc-vnc-viewer
+    
     # S
     samdump2
     sameboy
+    sbctl
     scrcpy
+    signal-desktop
+    slack
     spice-vdagent
+    spice-gtk
+    steam
+
     # T
+    tailscale
     terraform
     tmux
     toybox
     trivy
     # V
     veracrypt
+    vivaldi
     vscode-extensions.ms-dotnettools.csdevkit
     vscode-extensions.ms-dotnettools.vscode-dotnet-runtime
     # W
     wget
     whois
     wifite2
-    # winetricks
-    # wineWowPackages.stable
+    winetricks
+    wineWowPackages.stable
+    wpscan
     # U
     uv
+    # V 
+    virt-viewer
+    vivaldi
+    # Y 
+    yarn
     # Z
     zsh
 

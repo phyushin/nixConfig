@@ -12,7 +12,7 @@ in
     enable = lib.mkEnableOption "Enable user module";
 
     userName = lib.mkOption {
-      default = "johnze";
+      default = "phyu";
       description = ''
         username
       '';
@@ -22,12 +22,13 @@ in
   config = lib.mkIf cfg.enable {
     users.users.${cfg.userName} = {
       isNormalUser = true;
-      description = "johnze";
+      description = "phyu";
       extraGroups = [
         "networkmanager"
         "wheel"
         "docker"
         "adbusers"
+        "dialout"
       ];
       packages = with pkgs; [
         kdePackages.kate

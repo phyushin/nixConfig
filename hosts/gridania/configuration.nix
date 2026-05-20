@@ -15,8 +15,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    
-    # inputs.home-manager.nixosModules.default
   ];
 
   tester = {
@@ -24,13 +22,58 @@
     userName = "phyu";
   };
 
+  # graphics
+  hardware = {
+    graphics = {
+      enable = true;
+    };
+    
+    nvidia = {
+      # Modesetting is required.
+      modesetting.enable = true;
+
+      # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+      # Enable this if you have graphical corruption issues or application crashes after waking
+      # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+      # of just the bare essentials.
+      powerManagement.enable = false;
+
+      # Fine-grained power management. Turns off GPU when not in use.
+      # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+      powerManagement.finegrained = false;
+
+      # Use the NVidia open source kernel module (not to be confused with the
+      # independent third-party "nouveau" open source driver).
+      # Support is limited to the Turing and later architectures. Full list of 
+      # supported GPUs is at: 
+      # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+      # Only available from driver 515.43.04+
+      open = true;
+
+      # Enable the Nvidia settings menu,
+    # accessible via `nvidia-settings`.
+      nvidiaSettings = true;
+
+      # Optionally, you may need to select the appropriate driver version for your specific GPU.
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
+};
+
   # Bootloader.
   boot = {
     loader = {
-      grub.enable = true;
-      grub.device = "/dev/sda";
-      grub.useOSProber = true;
+      systemd-boot = {
+        enable = true;
+        #extraEntries = {
+        # "windows.conf" = ''
+        #    title Windows
+        #   efi /EFI/Microsoft/Boot/bootmgfw.efi
+        #   '';
+        # };
+        };
+
     };
+
     blacklistedKernelModules = [ "rtl8xxxu" ];
     extraModulePackages = with config.boot.kernelPackages; [
       rtl88xxau-aircrack
@@ -66,7 +109,9 @@
       ]; # specified open ports http, https, burp listener and frida
     };
     extraHosts = ''
-      127.0.0.2 other-localhost
+      127.0.0.2     other-localhost
+      192.168.2.21  emerald.local
+      192.168.2.5   crystarium.local
     '';
   };
   # Set your time zone.
@@ -88,7 +133,19 @@
     };
   };
 
-  security.rtkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    sudo = {
+      enable = true;
+      extraRules = [{
+        users=["phyu"];
+        runAs ="ALL:ALL";
+        commands=[
+          {command = "/opt/reboot-into-windows";options = ["NOPASSWD"];}
+          ];
+        }];
+      };
+    };
 
   services = {
     openssh = {
@@ -121,8 +178,6 @@
     # Enable sound with pipewire.
     pulseaudio.enable = false;
 
-    # vscode-server.enable = true;
-
     # Enable the KDE Plasma Desktop Environment.
     #  displayManager.sddm.enable = true;
     #  desktopManager.plasma6.enable = true;
@@ -132,9 +187,12 @@
       # You can disable this if you're only using the Wayland session.
       enable = true;
       # videoDrivers = ["vmware"]; # is not compatible with m1
-      videoDrivers = ["fbdev"]; 
+      videoDrivers = ["nvidia"]; 
       # Enable touchpad support (enabled default in most desktopManager).
-      displayManager.lightdm.enable = true;
+      displayManager.lightdm = {
+        enable = true;
+        background = "/home/phyu/Downloads/ff14_backgrounds/blm.png";
+        };
       desktopManager.cinnamon.enable = true;
       # libinput.enable = true;
       xkb = {
@@ -143,15 +201,16 @@
       };
 
     };
-
-    qemuGuest.enable = true;
-    spice-vdagentd.enable = true;
   };
 
   programs = {
     firefox.enable = true;
     zsh.enable = true;
     nix-ld.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      };
   };
     
   # List packages installed in system profile. To search, run:
@@ -171,10 +230,8 @@
 
   # List services that you want to enable:
 
-  # Enable VMware Tools
-
   virtualisation = {
-    vmware.guest.enable = true;
+    vmware.host.enable = true;
     docker.enable = true;
   };
 
