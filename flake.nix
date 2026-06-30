@@ -57,13 +57,20 @@
 
           modules = [
             lanzaboote.nixosModules.lanzaboote
-
             ((import ./hosts/gridania/configuration.nix) { inherit pkgs-unstable; })
             ((import ./hosts/gridania/lanza.nix))
             ((import ./modules) { inherit pkgs-unstable; })
-
           ];
         };
+        ilmheg = nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+
+          modules = [
+            ((import ./hosts/ilmheg/configuration.nix) { inherit pkgs-unstable; })
+            ((import ./modules) { inherit pkgs-unstable; })
+          ];
+        };
+
       };
     };
 }
