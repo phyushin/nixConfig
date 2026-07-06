@@ -76,7 +76,7 @@
 
     blacklistedKernelModules = [ "rtl8xxxu" ];
     extraModulePackages = with config.boot.kernelPackages; [
-      rtl88xxau-aircrack
+    #  rtl88xxau-aircrack
     ];
   };
 

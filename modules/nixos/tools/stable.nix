@@ -16,7 +16,7 @@
     awscli
     # B
     bat
-    # bloodhound
+
     bluez
     bluez-tools
     brave
@@ -90,8 +90,7 @@
     netexec
     nikto
     nmap
-    nodePackages."@angular/cli"
-    nodejs_24
+ 
     
     # O
     obsidian
@@ -112,7 +111,8 @@
     ruby
     rbenv
     rgbds
-    realvnc-vnc-viewer
+    
+
     
     # S
     samdump2
@@ -141,7 +141,7 @@
     whois
     wifite2
     winetricks
-    wineWowPackages.stable
+    wineWow64Packages.stable
     wpscan
     # U
     uv
@@ -153,14 +153,14 @@
     # Z
     zsh
 
-    # python
-    (python312.withPackages (ps: [ps.requests]))
-    python312
-    python312Packages.pipx
-    python312Packages.pandas
-    python312Packages.pip
-    python312Packages.numpy
-    python312Packages.requests
-    python312Packages.wcwidth
+    
+    #(python3.withPackages (ps: [ps.requests]))
+    python3
+    #python3Packages.pipx
+    #python3Packages.pandas
+    #python3Packages.pip
+    #python3Packages.numpy
+    #python3Packages.requests
+    #python3Packages.wcwidth
   ];
 }

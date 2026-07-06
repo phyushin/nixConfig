@@ -7,9 +7,9 @@
 }:
 {
   environment.systemPackages = with pkgs-unstable; [
-    #android-studio  -- doesnt work with aarch64-linux
+    android-studio  # -- doesnt work with aarch64-linux
     bruno
-    (burpsuite.override { proEdition = false; })
+    burpsuite
     # (burpsuite.override { proEdition = true; })
     jsubfinder
     massdns
