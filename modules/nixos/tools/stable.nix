@@ -112,7 +112,7 @@
     ruby
     rbenv
     rgbds
-    realvnc-vnc-viewer
+    #realvnc-vnc-viewer
     
     # S
     samdump2

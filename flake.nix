@@ -1,5 +1,5 @@
 {
-  description = "Pentesting Setup";
+  description = "Phyu Setup";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
@@ -64,6 +64,28 @@
 
           ];
         };
+        nebuchadnezzar = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          pkgs = import nixpkgs{
+            inherit system;
+            config = {
+              allowUnfree = true;
+              permittedInsecurePackages = [
+                "jitsi-meet-1-0.8792"
+              ];
+            };
+          };
+
+          modules = [
+            ((import ./hosts/nebuchadnezzar/configuration.nix) { inherit pkgs-unstable; })
+            ((import ./modules) { inherit pkgs-unstable; })
+
+            ((import ./services) { inherit pkgs-unstable; })
+
+          ];
+        };
+
       };
     };
 }
